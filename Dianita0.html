@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Dianita 💖</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: white;
+    background: linear-gradient(#ff9a9e, #fad0c4);
+    overflow: hidden;
+}
+
+h1 {
+    margin-top: 50px;
+    font-size: 22px;
+    padding: 0 20px;
+}
+
+#contador {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+/* 🌸 FLORES */
+.flower {
+    position: absolute;
+    font-size: 20px;
+    animation: float 8s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh) rotate(0deg); }
+    100% { transform: translateY(-10vh) rotate(360deg); }
+}
+
+/* BOTÓN */
+button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #ff4d6d;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>
+Siempre valoro los momentos que paso contigo 💫<br>
+Te quiero mucho Dianita 💖
+</h1>
+
+<div id="contador"></div>
+
+<!-- 🎵 BOTÓN -->
+<button onclick="activarMusica()">🎵 Música</button>
+
+<!-- 🎵 MÚSICA OCULTA -->
+<iframe id="musica" width="0" height="0"
+src=""
+frameborder="0" allow="autoplay"></iframe>
+
+<script>
+// 🌸 FLORES ANIMADAS
+function crearFlor() {
+    const flor = document.createElement("div");
+    flor.classList.add("flower");
+
+    const flores = ["🌸","🌼","💐","🌺"];
+    flor.innerText = flores[Math.floor(Math.random() * flores.length)];
+
+    flor.style.left = Math.random() * 100 + "vw";
+    flor.style.fontSize = (Math.random() * 10 + 15) + "px";
+
+    document.body.appendChild(flor);
+
+    setTimeout(() => flor.remove(), 8000);
+}
+
+setInterval(crearFlor, 300);
+
+// ⏳ CONTADOR DE VIDA
+const nacimiento = new Date("2001-02-04T00:00:00");
+
+function actualizarTiempo() {
+    const ahora = new Date();
+
+    let años = ahora.getFullYear() - nacimiento.getFullYear();
+    let meses = ahora.getMonth() - nacimiento.getMonth();
+    let dias = ahora.getDate() - nacimiento.getDate();
+
+    let horas = ahora.getHours();
+    let minutos = ahora.getMinutes();
+    let segundos = ahora.getSeconds();
+
+    if (dias < 0) {
+        meses--;
+        dias += 30;
+    }
+
+    if (meses < 0) {
+        años--;
+        meses += 12;
+    }
+
+    document.getElementById("contador").innerHTML =
+        `Diana ha vivido:<br>
+        ${años} años, ${meses} meses, ${dias} días 💖<br>
+        ${horas}h ${minutos}m ${segundos}s`;
+}
+
+setInterval(actualizarTiempo, 1000);
+
+// 🎵 ACTIVAR MÚSICA
+function activarMusica() {
+    document.getElementById("musica").src =
+    "https://www.youtube.com/embed/SlPhMPnQ58k?autoplay=1&loop=1&playlist=SlPhMPnQ58k";
+}
+</script>
+
+</body>
+</html>
